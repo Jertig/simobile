@@ -31,7 +31,9 @@ npm test -- --watch=false
 - Foundation Ionic Angular dengan NgModules dan standalone: false.
 - Halaman Dashboard, Produk, Transaksi, Profil, Pengaturan, Tentang Aplikasi, Logout beserta routing utama.
 - Empat tab utama: Dashboard, Produk, Transaksi, Profil melalui halaman tabs dan child routes.
-- Tahap berikut dalam pekerjaan Jeremiah: drawer, Product Service, 10 produk dummy, daftar produk dari service.
+- Drawer berisi Pengaturan, Tentang Aplikasi, Logout; menu otomatis menutup setelah dipilih.
+- Tombol kembali dari halaman drawer ke tab sebelumnya, atau Dashboard saat halaman dibuka langsung.
+- Tahap berikut dalam pekerjaan Jeremiah: Product Service, 10 produk dummy, daftar produk dari service.
 
 Belum mengimplementasikan pencarian real-time, detail produk, form tambah/edit, keranjang, checkout, transaksi/riwayat, dashboard ringkasan, dark mode toggle, atau animasi custom.
 
