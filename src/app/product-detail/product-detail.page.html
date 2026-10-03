@@ -30,6 +30,7 @@
       Tambah ke keranjang
     </ion-button>
     <p *ngIf="cartMessage != ''">{{ cartMessage }}</p>
+    <ion-button expand="block" fill="outline" routerLink="/cart">Lihat keranjang</ion-button>
   </div>
   <p *ngIf="product == null">Produk tidak ditemukan.</p>
 </ion-content>

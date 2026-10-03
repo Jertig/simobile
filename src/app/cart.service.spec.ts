@@ -28,6 +28,17 @@ describe('CartService', () => {
     expect(service.items.length).toBe(0);
   });
 
+  it('totals quantities and keeps other products when removing a row', () => {
+    expect(service.getTotal()).toBe(0);
+    service.addProduct(1);
+    service.addProduct(1);
+    service.addProduct(2);
+    expect(service.getTotal()).toBe(154000);
+    service.removeProduct(1);
+    expect(service.getTotal()).toBe(18000);
+    expect(service.items[0].productId).toBe(2);
+  });
+
   it('does not add a quantity greater than the available stock', () => {
     for (let i = 0; i < 5; i++) expect(service.addProduct(9)).toBe(true);
     expect(service.addProduct(9)).toBe(false);
