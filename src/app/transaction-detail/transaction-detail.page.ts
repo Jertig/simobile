@@ -10,13 +10,19 @@ import { TransactionService } from '../transaction.service';
 })
 export class TransactionDetailPage implements OnInit {
   transaction: any = null;
+  transactionId = 0;
 
   constructor(private route: ActivatedRoute, private transactionservice: TransactionService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.transaction = this.transactionservice.getTransactionById(params['id']);
+      this.transactionId = params['id'];
+      this.transaction = this.transactionservice.getTransactionById(this.transactionId);
     });
+  }
+
+  ionViewWillEnter() {
+    this.transaction = this.transactionservice.getTransactionById(this.transactionId);
   }
 
   getDateText(date: Date): string {

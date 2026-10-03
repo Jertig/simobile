@@ -46,4 +46,35 @@ describe('CartPage', () => {
     expect(component.getItems().length).toBe(1);
     expect(component.getTotal()).toBe(18000);
   });
+
+  it('refreshes a cached cart and allows two checkouts through the button', async () => {
+    fixture.detectChanges();
+    await fixture.whenStable();
+    const cart = TestBed.inject(CartService);
+    const transactions = TestBed.inject(TransactionService);
+    const button = fixture.nativeElement.querySelector('ion-button[expand="block"]');
+    expect(button.disabled).toBe(true);
+    cart.addProduct(1);
+    component.ionViewWillEnter();
+    fixture.changeDetectorRef.markForCheck();
+    fixture.detectChanges();
+    expect(button.disabled).toBe(false);
+    button.click();
+    fixture.detectChanges();
+    expect(transactions.transactions.length).toBe(1);
+    expect(button.disabled).toBe(true);
+    cart.addProduct(2);
+    cart.addProduct(2);
+    component.ionViewWillEnter();
+    fixture.changeDetectorRef.markForCheck();
+    fixture.detectChanges();
+    expect(component.message).toBe('');
+    expect(fixture.nativeElement.textContent).not.toContain('Transaksi 1 berhasil');
+    expect(fixture.nativeElement.textContent).toContain('36000');
+    expect(button.disabled).toBe(false);
+    button.click();
+    fixture.detectChanges();
+    expect(transactions.transactions.length).toBe(2);
+    expect(button.disabled).toBe(true);
+  });
 });

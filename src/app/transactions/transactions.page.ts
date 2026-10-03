@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { TransactionService } from '../transaction.service';
 
 @Component({
   selector: 'app-transactions',
@@ -7,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class TransactionsPage implements OnInit {
+  transactions: any[] = [];
 
-  constructor() { }
+  constructor(private transactionservice: TransactionService, private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
+    this.transactions = this.transactionservice.transactions;
+  }
+
+  ionViewWillEnter() {
+    this.transactions = this.transactionservice.transactions;
+    this.changeDetector.detectChanges();
+  }
+
+  getDateText(date: Date): string {
+    return this.transactionservice.getDateText(date);
   }
 
 }

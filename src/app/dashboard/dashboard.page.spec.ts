@@ -22,10 +22,12 @@ describe('DashboardPage', () => {
     transactions.transactions = [
       { date: new Date(), items: [{ productId: 5, quantity: 2, price: 3500 }] }
     ];
-    component.ionViewDidEnter();
+    component.ionViewWillEnter();
     expect(component.productCount).toBe(TestBed.inject(ProductService).products.length);
     expect(component.transactionCount).toBe(1);
     expect(component.salesTotal).toBe(7000);
     expect(component.bestSellingProduct).toBe('Mie Instan Goreng');
+    expect(fixture.nativeElement.textContent).toContain('7000');
+    expect(fixture.nativeElement.textContent).toContain('Mie Instan Goreng');
   });
 });

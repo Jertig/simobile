@@ -60,6 +60,21 @@ describe('ProductFormPage', () => {
     expect(service.getProductById(2)?.sellingPrice).toBe(20000);
   });
 
+  it('starts another new product when the cached add page is reopened', () => {
+    validForm();
+    component.saveProduct();
+    component.ionViewWillEnter();
+    expect(component.productId).toBe(0);
+    expect(component.savedId).toBe(0);
+    expect(component.form.value.name).toBe('');
+    validForm();
+    component.form.patchValue({ name: 'Susu kedua' });
+    component.saveProduct();
+    expect(service.getProductCount()).toBe(12);
+    expect(service.getProductById(11)?.name).toBe('Susu');
+    expect(service.getProductById(12)?.name).toBe('Susu kedua');
+  });
+
   it('does not save an unknown product ID', () => {
     component.productId = 999;
     component.loadForm();

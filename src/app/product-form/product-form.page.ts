@@ -68,12 +68,13 @@ export class ProductFormPage implements OnInit {
       purchasePrice: Number(this.form.value.purchasePrice), sellingPrice: Number(this.form.value.sellingPrice),
       stock: Number(this.form.value.stock), imageUrl: this.form.value.imageUrl
     };
-    if (this.productId == 0) {
+    if (this.productId == 0 && this.savedId == 0) {
       this.savedId = this.productservice.addProduct(data);
-      this.productId = this.savedId;
     } else {
-      this.productservice.updateProduct(this.productId, data);
-      this.savedId = this.productId;
+      let id = this.productId;
+      if (id == 0) id = this.savedId;
+      this.productservice.updateProduct(id, data);
+      this.savedId = id;
     }
     this.message = 'Produk berhasil disimpan.';
   }

@@ -13,6 +13,7 @@ import { AnimationController } from '@ionic/angular';
 export class ProductDetailPage implements OnInit {
   product: any = null;
   cartMessage = '';
+  productId = 0;
 
   constructor(private route: ActivatedRoute,
               private productservice: ProductService,
@@ -21,9 +22,15 @@ export class ProductDetailPage implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.product = this.productservice.getProductById(params['id']);
+      this.productId = params['id'];
+      this.product = this.productservice.getProductById(this.productId);
       this.cartMessage = '';
     });
+  }
+
+  ionViewWillEnter() {
+    this.product = this.productservice.getProductById(this.productId);
+    this.cartMessage = '';
   }
 
   getImageUrl(): string {

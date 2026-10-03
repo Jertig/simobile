@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { TransactionService } from '../transaction.service';
 
@@ -15,14 +15,16 @@ export class DashboardPage implements OnInit {
   bestSellingProduct = 'Belum ada penjualan';
 
   constructor(private productservice: ProductService,
-              private transactionservice: TransactionService) { }
+              private transactionservice: TransactionService,
+              private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.loadSummary();
   }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     this.loadSummary();
+    this.changeDetector.detectChanges();
   }
 
   loadSummary() {

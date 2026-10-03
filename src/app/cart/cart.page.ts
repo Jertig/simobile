@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { TransactionService } from '../transaction.service';
 
@@ -11,11 +11,14 @@ import { TransactionService } from '../transaction.service';
 export class CartPage implements OnInit {
   message = '';
   transactionId = 0;
+  items: any[] = [];
 
-  constructor(private cartservice: CartService, private transactionservice: TransactionService) { }
+  constructor(private cartservice: CartService, private transactionservice: TransactionService,
+              private changeDetector: ChangeDetectorRef) { }
 
   confirmTransaction() {
     const transaction = this.transactionservice.confirmTransaction();
+    this.items = this.cartservice.items;
     if (transaction == null) {
       this.message = 'Transaksi belum disimpan. Keranjang kosong atau stok tidak cukup.';
     } else {
@@ -25,7 +28,7 @@ export class CartPage implements OnInit {
   }
 
   getItems() {
-    return this.cartservice.items;
+    return this.items;
   }
 
   getTotal(): number {
@@ -34,9 +37,18 @@ export class CartPage implements OnInit {
 
   removeProduct(id: number) {
     this.cartservice.removeProduct(id);
+    this.items = this.cartservice.items;
   }
 
   ngOnInit() {
+    this.items = this.cartservice.items;
+  }
+
+  ionViewWillEnter() {
+    this.items = this.cartservice.items;
+    this.message = '';
+    this.transactionId = 0;
+    this.changeDetector.detectChanges();
   }
 
 }

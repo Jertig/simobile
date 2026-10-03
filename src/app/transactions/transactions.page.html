@@ -8,6 +8,15 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <h2>Transaksi</h2>
-  <p>Fitur transaksi akan tersedia pada tahap berikutnya.</p>
+  <h2>Riwayat Transaksi</h2>
+  <p *ngIf="transactions.length == 0">Belum ada transaksi.</p>
+  <ion-list>
+    <ion-item *ngFor="let transaction of transactions" routerLink="/transaction-detail/{{ transaction.id }}">
+      <ion-label>
+        <h2>Transaksi {{ transaction.id }}</h2>
+        <p>Tanggal: {{ getDateText(transaction.date) }}</p>
+        <p>Total: Rp {{ transaction.total }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
