@@ -14,3 +14,11 @@ Transaction Service pada tahap ini hanya memiliki array kosong dan perhitungan r
 Cart Service hanya diperlukan untuk aksi tambah ke keranjang dari detail. Tidak membuat cart UI, checkout, form tambah/edit, theme/dark mode, animasi custom, atau README final. Tahap berikutnya menjadi pekerjaan William.
 
 Pencarian menggunakan loop dasar, indexing teks, perbandingan, dan push. Pencarian mencocokkan potongan nama secara literal dan membedakan huruf besar/kecil. Tidak menggunakan filter/includes, pipe pencarian, atau library tambahan. Pemanggilan fungsi pada ngFor mengikuti contoh chunkArray Week 5; ngModel memperbarui list langsung tanpa tombol submit.
+
+Gambar default berasal dari contoh Week 4: https://ubaya.cloud/no_image.jpg dan disimpan sebagai src/assets/no-image.jpg agar tetap tersedia secara offline. Binding gambar memilih path default saat imageUrl kosong. Cart Service menyimpan productId, name, quantity, price dalam array items, menggabungkan penambahan produk yang sama, dan menolak jumlah melebihi stok. Menambahkan ke cart tidak mengurangi stok atau membuat transaksi.
+
+## Hasil Josh
+
+Empat fitur commit 7-10 selesai. Build berhasil dan 28 unit test lulus. Browser memverifikasi dashboard, pencarian tanpa submit dan reset input, detail dari ID hasil pencarian, ID tidak dikenal, tombol kembali, gambar default lokal, tombol disabled stok 0, dan pesan berhasil setelah click add to cart. Tampilan dashboard serta detail juga diperiksa pada ukuran layar ponsel.
+
+Commit 1-6 Jeremiah tetap utuh. Pekerjaan berhenti setelah tahap Josh; bagian William dan README final belum dikerjakan.

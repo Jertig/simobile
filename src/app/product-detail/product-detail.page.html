@@ -10,6 +10,7 @@
 
 <ion-content class="ion-padding">
   <div *ngIf="product != null">
+    <ion-img [src]="getImageUrl()" alt="Gambar produk"></ion-img>
     <h2>{{ product.name }}</h2>
     <ion-list>
       <ion-item>
@@ -25,6 +26,10 @@
         <ion-label>Harga jual: Rp {{ product.sellingPrice }}</ion-label>
       </ion-item>
     </ion-list>
+    <ion-button expand="block" [disabled]="product.stock == 0" (click)="addToCart()">
+      Tambah ke keranjang
+    </ion-button>
+    <p *ngIf="cartMessage != ''">{{ cartMessage }}</p>
   </div>
   <p *ngIf="product == null">Produk tidak ditemukan.</p>
 </ion-content>
