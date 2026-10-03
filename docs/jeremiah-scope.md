@@ -56,5 +56,6 @@ Sebelum setiap commit: tinjau perubahan, jalankan build, verifikasi fungsi terka
 - Root: package.json, package-lock.json, angular.json, ionic.config.json, tsconfig*.json, README.md.
 - Shell: src/app/app.module.ts, app-routing.module.ts, app.component.ts, app.component.html, app.component.scss.
 - Halaman: src/app/dashboard/, products/, transactions/, profile/, settings/, about/, logout/.
+- Container tab: src/app/tabs/ dengan NgModule dan child routes untuk empat halaman utama.
 - Data: src/app/product.service.ts beserta spec bawaan generator.
 - Setiap halaman menggunakan NgModule dan routing module hasil generator Ionic.

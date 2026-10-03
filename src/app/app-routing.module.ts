@@ -3,20 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
-  },
-  {
-    path: 'products',
-    loadChildren: () => import('./products/products.module').then(m => m.ProductsPageModule)
-  },
-  {
-    path: 'transactions',
-    loadChildren: () => import('./transactions/transactions.module').then(m => m.TransactionsPageModule)
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule)
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
     path: 'settings',
@@ -30,8 +18,8 @@ const routes: Routes = [
     path: 'logout',
     loadChildren: () => import('./logout/logout.module').then(m => m.LogoutPageModule)
   },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: 'dashboard' }
+  { path: '', redirectTo: 'tabs/dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: 'tabs/dashboard' }
 ];
 
 @NgModule({
