@@ -46,4 +46,8 @@ export class ProductService {
       purchasePrice: 8500, sellingPrice: 11000, stock: 0, imageUrl: ''
     }
   ];
+
+  getProductCount(): number {
+    return this.products.length;
+  }
 }

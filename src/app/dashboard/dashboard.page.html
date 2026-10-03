@@ -10,5 +10,25 @@
 <ion-content class="ion-padding">
   <h2>SIMOBILE</h2>
   <p>Toko Makmur Jaya</p>
-  <p>Ringkasan toko akan tersedia pada tahap berikutnya.</p>
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <h2>Jumlah produk</h2>
+        <p>{{ productCount }}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <h2>Transaksi hari ini</h2>
+        <p>{{ transactionCount }} transaksi</p>
+        <p>Total: Rp {{ salesTotal }}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <h2>Produk terlaris hari ini</h2>
+        <p>{{ bestSellingProduct }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
