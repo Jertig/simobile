@@ -34,7 +34,10 @@ npm test -- --watch=false
 - Drawer berisi Pengaturan, Tentang Aplikasi, Logout; menu otomatis menutup setelah dipilih.
 - Tombol kembali dari halaman drawer ke tab sebelumnya, atau Dashboard saat halaman dibuka langsung.
 - Product Service dengan 10 produk dummy, variasi kategori, harga beli/jual, dan stok termasuk stok kosong.
-- Tahap berikut dalam pekerjaan Jeremiah: menampilkan daftar produk dari service.
+- Daftar produk mengambil array dari Product Service melalui constructor dan ngOnInit.
+- List menampilkan nama, kategori, harga jual, stok, jumlah produk, dan penanda stok habis dengan *ngFor, *ngIf, interpolation.
+
+Tahap Jeremiah selesai. Dashboard, Transaksi, Profil, Pengaturan, dan Logout masih berupa kerangka halaman untuk tahap anggota berikutnya.
 
 Belum mengimplementasikan pencarian real-time, detail produk, form tambah/edit, keranjang, checkout, transaksi/riwayat, dashboard ringkasan, dark mode toggle, atau animasi custom.
 

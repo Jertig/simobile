@@ -42,12 +42,12 @@ Contoh navigasi bergambar pada requirement berbeda penempatan dari kalimat keten
 
 ## Rencana commit
 
-1. 1 initial project
-2. 2 create main pages
-3. 3 add tab navigation
-4. 4 add drawer menu
-5. 5 add product data
-6. 6 show product list
+- 1 initial project
+- 2 create main pages
+- 3 add tab navigation
+- 4 add drawer menu
+- 5 add product data
+- 6 show product list
 
 Sebelum setiap commit: tinjau perubahan, jalankan build, verifikasi fungsi terkait. Setelah commit: push ke main. Tidak squash, amend, atau backdate.
 
@@ -59,3 +59,11 @@ Sebelum setiap commit: tinjau perubahan, jalankan build, verifikasi fungsi terka
 - Container tab: src/app/tabs/ dengan NgModule dan child routes untuk empat halaman utama.
 - Data: src/app/product.service.ts beserta spec bawaan generator.
 - Setiap halaman menggunakan NgModule dan routing module hasil generator Ionic.
+
+## Hasil tahap Jeremiah
+
+Foundation, tujuh halaman utama, routing, empat tab, drawer, Product Service, 10 produk dummy, dan list dari service sudah selesai. Halaman tabs merupakan container untuk empat child routes. Array produk hanya berada di Product Service.
+
+Build berhasil. Seluruh 12 unit test lulus, termasuk validasi variasi data dan penggunaan array service oleh halaman Produk. Browser sudah memverifikasi perpindahan empat tab, tiga link drawer dan auto-close, tombol kembali, akses langsung route, fallback route, serta daftar 10 produk dan scroll pada layar ponsel.
+
+Pengerjaan berhenti pada tahap Jeremiah. Fitur Josh/William belum dikerjakan.
