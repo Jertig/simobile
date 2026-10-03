@@ -17,7 +17,7 @@ npm ci
 
 Repository bersifat private, jadi akun GitHub perlu memiliki akses ke repository.
 
-## Menjalankan
+## Menjalankan dan memeriksa
 
 ```sh
 ionic serve
@@ -30,37 +30,31 @@ ionic build
 npm test -- --watch=false
 ```
 
-## Fitur yang sudah dibuat
+Build produksi tersedia dalam folder www. Pengujian terakhir: build berhasil dan 54 test dari 16 file lulus.
 
-- Ionic Angular menggunakan NgModules, dengan standalone: false.
+## Fitur
+
+- Ionic Angular dengan NgModules dan standalone: false.
 - Empat tab: Dashboard, Produk, Transaksi, Profil.
-- Drawer Pengaturan, Tentang Aplikasi, dan Logout.
-- Sepuluh produk dummy dengan kategori, harga beli, harga jual, dan stok yang berbeda.
-- Pencarian nama langsung melalui ngModel. Pencarian membedakan huruf besar dan kecil.
-- Detail produk berdasarkan ID pada route, dengan gambar default lokal.
-- Tombol tambah ke keranjang disabled saat stok nol.
-- Cart Service menggabungkan produk yang sama dan membatasi jumlah sesuai stok.
-- Halaman keranjang menampilkan jumlah, subtotal, total, dan tombol hapus.
-- Konfirmasi pertama menyimpan transaksi, mengurangi stok, dan mengosongkan keranjang.
-- Detail transaksi berdasarkan ID, dapat dibuka melalui tombol setelah konfirmasi.
-- Dashboard menghitung jumlah produk, transaksi dan penjualan hari ini, serta produk terlaris dari service.
-- Palet hijau-kuning, informasi Profil dan Pengaturan.
-- Dua animasi AnimationController: fade pada Tentang Aplikasi dan scale gambar saat produk ditambahkan.
+- Drawer: Pengaturan, Tentang Aplikasi, Logout.
+- Dashboard: jumlah produk, jumlah dan total transaksi hari ini, serta produk terlaris dari service.
+- Sepuluh produk dummy dengan variasi kategori, harga, dan stok.
+- Pencarian nama langsung memakai ngModel tanpa tombol submit. Pencarian membedakan huruf besar dan kecil.
+- Detail produk melalui ID route, menampilkan nama, stok, harga beli dan harga jual.
+- Gambar default lokal jika URL gambar kosong; tombol tambah ke keranjang disabled saat stok nol.
+- Form tambah/edit dengan Reactive Forms dan pesan error per field: nama wajib, harga berupa angka lebih dari nol, stok berupa angka tidak negatif. Input lain tetap ada saat validasi gagal.
+- Cart menghitung jumlah, subtotal, total, membatasi jumlah sesuai stok, serta menyediakan tombol hapus.
+- Konfirmasi transaksi menyimpan salinan item ke riwayat, mengurangi stok, dan mengosongkan cart.
+- Riwayat menampilkan transaksi yang dapat diklik untuk membuka detail ID, tanggal, item, subtotal, dan total.
+- Pembaruan cart, riwayat, detail, dan dashboard saat kembali ke halaman; checkout berulang tanpa reload browser.
+- Custom theme hijau-kuning dan toggle mode gelap/terang di Pengaturan. Pilihan berlaku selama aplikasi berjalan dan tetap aktif saat navigasi.
+- Dua animasi AnimationController: fade pada Tentang Aplikasi dan scale gambar saat produk ditambahkan ke keranjang.
 
-Product Service mengelola produk dan stok, Cart Service mengelola keranjang, Transaction Service menyimpan transaksi dan menghitung ringkasan.
+Product Service mengelola produk dan stok, Cart Service mengelola keranjang, Transaction Service menyimpan transaksi dan menghitung ringkasan. Logika data berada di tiga service tersebut.
 
-Data disimpan dalam array selama aplikasi berjalan. Reload browser atau menutup aplikasi mengembalikan data awal. Tidak memakai database, API, atau penyimpanan permanen. Logout merupakan halaman navigasi karena prototype belum memiliki akun pengguna.
+Data disimpan dalam array selama aplikasi berjalan. Reload browser atau menutup aplikasi mengembalikan data awal. Tidak memakai database, API, atau penyimpanan permanen. Gambar default tersedia lokal. URL gambar opsional memerlukan koneksi jika menggunakan gambar dari luar aplikasi. Logout merupakan halaman navigasi karena prototype belum memiliki akun pengguna.
 
-## Bagian yang belum selesai
-
-- Form tambah/edit belum dibuat. Requirement meminta Reactive Form, sedangkan Week 6 hanya mengajarkan form ngModel. ReactiveFormsModule, FormGroup, FormControl, dan Validators tidak ditemukan dalam Week 1-7. Teknik pengganti belum diizinkan.
-- Toggle light/dark belum dibuat. Week 7 mengajarkan palet SCSS dan animasi, tetapi tidak mengajarkan toggle tema gelap. Import tema otomatis mengikuti sistem dari starter masih ada; ini tidak memenuhi requirement toggle manual.
-- Daftar riwayat pada tab Transaksi belum dipublikasikan. Percobaan tampilannya tetap menunjukkan data lama jika tab sudah dibuka sebelum checkout, meskipun transaksi sudah tersimpan di service.
-- Integrasi transaksi berulang belum lolos uji browser. Saat kembali ke keranjang setelah transaksi pertama, item baru dapat tampil tetapi tombol konfirmasi masih disabled. Pembaruan halaman yang tersimpan oleh Ionic perlu diselesaikan sebelum demo seluruh fitur.
-
-Permintaan pengecualian terbatas untuk pembaruan tampilan masih menunggu keputusan. Belum menggunakan ChangeDetectorRef atau teknik tambahan di luar materi.
-
-## Materi yang dipakai
+## Materi dan final integration
 
 - Week 1: variabel, array, object, loop, fungsi, class.
 - Week 2: NgModules, generate page, routing, tab, drawer.
@@ -70,6 +64,8 @@ Permintaan pengecualian terbatas untuk pembaruan tampilan masih menunggu keputus
 - Week 6: service, constructor injection, array dan push.
 - Week 7: CSS variables, SCSS, AnimationController, ionViewDidEnter.
 
-Detail mapping dan hasil pemeriksaan ada di [Tahap William](docs/william-scope.md). Commit 1-10 milik Jeremiah dan Josh tetap dipertahankan.
+Final integration menggunakan izin terbatas pengguna untuk ReactiveFormsModule, FormBuilder, FormGroup, Validators; toggle kelas palet Ionic; ionViewWillEnter dan ChangeDetectorRef.detectChanges pada cart, riwayat, dan dashboard setelah lifecycle saja terbukti belum cukup. Tidak menambah library atau arsitektur state baru.
 
-Pemeriksaan terakhir: build berhasil dan 36 unit test lulus. Uji browser menemukan kendala pembaruan halaman di atas, sehingga seluruh requirement project belum selesai.
+Hasil audit requirement dan skenario pengujian ada di [Audit final](docs/final-audit.md). Catatan [Jeremiah](docs/jeremiah-scope.md), [Josh](docs/josh-scope.md), dan [William](docs/william-scope.md) mencatat hasil pada akhir tahap masing-masing, sebelum final integration.
+
+Commit 1-17 tetap utuh. Final integration dilanjutkan oleh Jeremiah dengan commit 18-21 pada branch main.
