@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/transactions"></ion-back-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Detail Transaksi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="transaction != null">
+    <h2>Transaksi {{ transaction.id }}</h2>
+    <p>Tanggal: {{ getDateText(transaction.date) }}</p>
+    <ion-list>
+      <ion-item *ngFor="let item of transaction.items">
+        <ion-label>
+          <h2>{{ item.name }}</h2>
+          <p>{{ item.quantity }} x Rp {{ item.price }}</p>
+          <p>Subtotal: Rp {{ item.quantity * item.price }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <h2>Total: Rp {{ transaction.total }}</h2>
+  </div>
+  <p *ngIf="transaction == null">Transaksi tidak ditemukan.</p>
+  <ion-button expand="block" routerLink="/tabs/transactions">Lihat riwayat</ion-button>
+</ion-content>

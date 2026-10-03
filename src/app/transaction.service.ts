@@ -10,6 +10,17 @@ export class TransactionService {
   transactions: any[] = [];
   nextId = 1;
 
+  getTransactionById(id: number) {
+    for (let i = 0; i < this.transactions.length; i++) {
+      if (this.transactions[i].id == id) return this.transactions[i];
+    }
+    return null;
+  }
+
+  getDateText(date: Date): string {
+    return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+  }
+
   constructor(private productservice: ProductService, private cartservice: CartService) { }
 
   confirmTransaction() {

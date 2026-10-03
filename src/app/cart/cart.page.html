@@ -25,6 +25,8 @@
     Konfirmasi Transaksi
   </ion-button>
   <p *ngIf="message != ''">{{ message }}</p>
+  <ion-button *ngIf="transactionId != 0" expand="block" fill="outline"
+              routerLink="/transaction-detail/{{ transactionId }}">Detail transaksi</ion-button>
   <ion-button expand="block" fill="outline" routerLink="/tabs/transactions">Lihat riwayat</ion-button>
   <ion-button expand="block" routerLink="/tabs/products">Pilih produk</ion-button>
 </ion-content>

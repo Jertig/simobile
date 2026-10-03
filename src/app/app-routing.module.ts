@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'cart',
     loadChildren: () => import('./cart/cart.module').then(m => m.CartPageModule)
   },
+  {
+    path: 'transaction-detail/:id',
+    loadChildren: () => import('./transaction-detail/transaction-detail.module').then(m => m.TransactionDetailPageModule)
+  },
   { path: '', redirectTo: 'tabs/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: 'tabs/dashboard' }
 ];

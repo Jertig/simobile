@@ -10,6 +10,7 @@ import { TransactionService } from '../transaction.service';
 })
 export class CartPage implements OnInit {
   message = '';
+  transactionId = 0;
 
   constructor(private cartservice: CartService, private transactionservice: TransactionService) { }
 
@@ -18,6 +19,7 @@ export class CartPage implements OnInit {
     if (transaction == null) {
       this.message = 'Transaksi belum disimpan. Keranjang kosong atau stok tidak cukup.';
     } else {
+      this.transactionId = transaction.id;
       this.message = 'Transaksi ' + transaction.id + ' berhasil disimpan. Total Rp ' + transaction.total + '.';
     }
   }
