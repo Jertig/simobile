@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../product.service';
 import { CartService } from '../cart.service';
+import { AnimationController } from '@ionic/angular';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,7 +16,8 @@ export class ProductDetailPage implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private productservice: ProductService,
-              private cartservice: CartService) { }
+              private cartservice: CartService,
+              private animationCtrl: AnimationController) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -35,9 +37,25 @@ export class ProductDetailPage implements OnInit {
     if (this.product == null) return;
     if (this.cartservice.addProduct(this.product.id)) {
       this.cartMessage = this.product.name + ' ditambahkan ke keranjang.';
+      this.animateProduct();
     } else {
       this.cartMessage = 'Produk tidak bisa ditambahkan karena stok tidak cukup.';
     }
+  }
+
+  animateProduct() {
+    const element = document.querySelector('#product-image') as HTMLElement;
+    if (element == null) return;
+    const animation = this.animationCtrl.create()
+      .addElement(element)
+      .duration(350)
+      .iterations(1)
+      .keyframes([
+        { offset: 0, transform: 'scale(1)' },
+        { offset: 0.5, transform: 'scale(1.08)' },
+        { offset: 1, transform: 'scale(1)' }
+      ]);
+    animation.play();
   }
 
 }
