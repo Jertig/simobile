@@ -33,7 +33,8 @@ npm test -- --watch=false
 - Empat tab utama: Dashboard, Produk, Transaksi, Profil melalui halaman tabs dan child routes.
 - Drawer berisi Pengaturan, Tentang Aplikasi, Logout; menu otomatis menutup setelah dipilih.
 - Tombol kembali dari halaman drawer ke tab sebelumnya, atau Dashboard saat halaman dibuka langsung.
-- Tahap berikut dalam pekerjaan Jeremiah: Product Service, 10 produk dummy, daftar produk dari service.
+- Product Service dengan 10 produk dummy, variasi kategori, harga beli/jual, dan stok termasuk stok kosong.
+- Tahap berikut dalam pekerjaan Jeremiah: menampilkan daftar produk dari service.
 
 Belum mengimplementasikan pencarian real-time, detail produk, form tambah/edit, keranjang, checkout, transaksi/riwayat, dashboard ringkasan, dark mode toggle, atau animasi custom.
 
@@ -43,8 +44,10 @@ Belum mengimplementasikan pencarian real-time, detail produk, form tambah/edit, 
 - Week 3-5: interpolation, property/event binding, *ngFor, komponen list.
 - Week 6: Angular Service, constructor injection, assignment array service di ngOnInit.
 
-Data produk akan disimpan dalam array service di aplikasi. Tidak menggunakan API, database, atau penyimpanan permanen.
+Data produk disimpan dalam array Product Service di aplikasi. Tidak menggunakan API, database, atau penyimpanan permanen. imageUrl masih kosong untuk produk yang belum memiliki foto; tampilan gambar dan fallback menjadi bagian tahap detail produk berikutnya.
 
 PPT Week 6 mengajarkan form ngModel. Reactive Form yang diminta requirement belum ditemukan pada materi Week 1-7. Dark mode toggle juga belum dijelaskan di PPT. Keduanya memerlukan pembahasan/materi tambahan sebelum tahap implementasinya.
 
 Versi dependency mengikuti starter resmi yang terpasang dan dikunci dalam package-lock.json. Starter versi ini mengimpor IonicModule dari @ionic/angular/lazy untuk NgModules. Kode aplikasi tetap menggunakan pola NgModule dan binding yang diajarkan.
+
+Product Service dibuat dengan ionic generate service product --type=service --injectable agar nama file dan pola service tetap mengikuti contoh kuliah.
