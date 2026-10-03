@@ -12,3 +12,5 @@ Mulai dari commit 6 milik Jeremiah. Commit 1-6 tetap utuh. Commit baru memakai A
 Transaction Service pada tahap ini hanya memiliki array kosong dan perhitungan ringkasan. Data uji transaksi hanya berada di unit test. Belum ada fitur membuat transaksi, riwayat, checkout, atau penyimpanan permanen. Format yang dibaca ringkasan adalah date berupa Date dan items berisi productId, quantity, price.
 
 Cart Service hanya diperlukan untuk aksi tambah ke keranjang dari detail. Tidak membuat cart UI, checkout, form tambah/edit, theme/dark mode, animasi custom, atau README final. Tahap berikutnya menjadi pekerjaan William.
+
+Pencarian menggunakan loop dasar, indexing teks, perbandingan, dan push. Pencarian mencocokkan potongan nama secara literal dan membedakan huruf besar/kecil. Tidak menggunakan filter/includes, pipe pencarian, atau library tambahan. Pemanggilan fungsi pada ngFor mengikuti contoh chunkArray Week 5; ngModel memperbarui list langsung tanpa tombol submit.

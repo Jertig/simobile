@@ -9,11 +9,16 @@ import { ProductService } from '../product.service';
 })
 export class ProductsPage implements OnInit {
   products: any[] = [];
+  searchText = '';
 
   constructor(private productservice: ProductService) { }
 
   ngOnInit() {
     this.products = this.productservice.products;
+  }
+
+  getProducts() {
+    return this.productservice.searchProducts(this.searchText);
   }
 
 }

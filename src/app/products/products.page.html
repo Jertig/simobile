@@ -9,9 +9,14 @@
 
 <ion-content class="ion-padding">
   <h2>Daftar Produk</h2>
-  <p>Jumlah produk: {{ products.length }}</p>
+  <ion-item>
+    <ion-input label="Cari nama produk" labelPlacement="floating"
+               [(ngModel)]="searchText"></ion-input>
+  </ion-item>
+  <p>Jumlah produk: {{ getProducts().length }}</p>
+  <p *ngIf="getProducts().length == 0">Produk tidak ditemukan.</p>
   <ion-list>
-    <ion-item *ngFor="let product of products">
+    <ion-item *ngFor="let product of getProducts()">
       <ion-label>
         <h2>{{ product.name }}</h2>
         <p>Kategori: {{ product.category }}</p>

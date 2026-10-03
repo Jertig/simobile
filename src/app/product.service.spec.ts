@@ -13,6 +13,17 @@ describe('ProductService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('searches a literal part of the name without changing the product array', () => {
+    expect(service.searchProducts('').length).toBe(10);
+    const result = service.searchProducts('Pasir');
+    expect(result.length).toBe(1);
+    expect(result[0].id).toBe(2);
+    expect(service.searchProducts('tidak ada').length).toBe(0);
+    expect(service.searchProducts('[').length).toBe(0);
+    expect(service.searchProducts('beras').length).toBe(0);
+    expect(service.products.length).toBe(10);
+  });
+
   it('has at least 10 valid products with different categories, prices and stocks', () => {
     expect(service.products.length).toBeGreaterThanOrEqual(10);
     let differentCategory = false;

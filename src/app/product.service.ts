@@ -50,4 +50,26 @@ export class ProductService {
   getProductCount(): number {
     return this.products.length;
   }
+
+  searchProducts(searchText: string) {
+    if (searchText == '') return this.products;
+    const result = [];
+
+    for (let i = 0; i < this.products.length; i++) {
+      const name = this.products[i].name;
+      let matches = false;
+
+      for (let j = 0; j <= name.length - searchText.length; j++) {
+        let sameText = true;
+        for (let k = 0; k < searchText.length; k++) {
+          if (name[j + k] != searchText[k]) sameText = false;
+        }
+        if (sameText) matches = true;
+      }
+
+      if (matches) result.push(this.products[i]);
+    }
+
+    return result;
+  }
 }
