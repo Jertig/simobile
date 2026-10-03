@@ -29,7 +29,8 @@ npm test -- --watch=false
 ## Status fitur
 
 - Foundation Ionic Angular dengan NgModules dan standalone: false.
-- Tahap berikut dalam pekerjaan Jeremiah: halaman utama, routing, empat tab, drawer, Product Service, 10 produk dummy, daftar produk dari service.
+- Halaman Dashboard, Produk, Transaksi, Profil, Pengaturan, Tentang Aplikasi, Logout beserta routing utama.
+- Tahap berikut dalam pekerjaan Jeremiah: empat tab, drawer, Product Service, 10 produk dummy, daftar produk dari service.
 
 Belum mengimplementasikan pencarian real-time, detail produk, form tambah/edit, keranjang, checkout, transaksi/riwayat, dashboard ringkasan, dark mode toggle, atau animasi custom.
 
