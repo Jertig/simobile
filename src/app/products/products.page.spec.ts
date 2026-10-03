@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
 import { ProductsPage } from './products.page';
 import { ProductService } from '../product.service';
 
@@ -7,6 +8,9 @@ describe('ProductsPage', () => {
   let fixture: ComponentFixture<ProductsPage>;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterModule.forRoot([])],
+    });
     fixture = TestBed.createComponent(ProductsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();

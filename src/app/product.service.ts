@@ -51,6 +51,13 @@ export class ProductService {
     return this.products.length;
   }
 
+  getProductById(id: number) {
+    for (let i = 0; i < this.products.length; i++) {
+      if (this.products[i].id == id) return this.products[i];
+    }
+    return null;
+  }
+
   searchProducts(searchText: string) {
     if (searchText == '') return this.products;
     const result = [];

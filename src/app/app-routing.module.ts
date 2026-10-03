@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'logout',
     loadChildren: () => import('./logout/logout.module').then(m => m.LogoutPageModule)
   },
+  {
+    path: 'product-detail/:id',
+    loadChildren: () => import('./product-detail/product-detail.module').then(m => m.ProductDetailPageModule)
+  },
   { path: '', redirectTo: 'tabs/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: 'tabs/dashboard' }
 ];

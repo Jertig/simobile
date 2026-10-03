@@ -13,6 +13,12 @@ describe('ProductService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('finds a product by ID and returns null for an unknown ID', () => {
+    const product = service.getProductById(8);
+    expect(product).toBe(service.products[7]);
+    expect(service.getProductById(999)).toBeNull();
+  });
+
   it('searches a literal part of the name without changing the product array', () => {
     expect(service.searchProducts('').length).toBe(10);
     const result = service.searchProducts('Pasir');

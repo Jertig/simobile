@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/products"></ion-back-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Detail Produk</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="product != null">
+    <h2>{{ product.name }}</h2>
+    <ion-list>
+      <ion-item>
+        <ion-label>Kategori: {{ product.category }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Stok: {{ product.stock }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Harga beli: Rp {{ product.purchasePrice }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Harga jual: Rp {{ product.sellingPrice }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  <p *ngIf="product == null">Produk tidak ditemukan.</p>
+</ion-content>

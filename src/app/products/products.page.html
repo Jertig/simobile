@@ -16,7 +16,8 @@
   <p>Jumlah produk: {{ getProducts().length }}</p>
   <p *ngIf="getProducts().length == 0">Produk tidak ditemukan.</p>
   <ion-list>
-    <ion-item *ngFor="let product of getProducts()">
+    <ion-item *ngFor="let product of getProducts()"
+              routerLink="/product-detail/{{ product.id }}">
       <ion-label>
         <h2>{{ product.name }}</h2>
         <p>Kategori: {{ product.category }}</p>
