@@ -17,6 +17,10 @@ export class CartService {
     return total;
   }
 
+  clearCart() {
+    this.items = [];
+  }
+
   removeProduct(id: number) {
     const remaining: any[] = [];
     for (let i = 0; i < this.items.length; i++) {

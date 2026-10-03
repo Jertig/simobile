@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
+import { TransactionService } from '../transaction.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,8 +9,18 @@ import { CartService } from '../cart.service';
   standalone: false,
 })
 export class CartPage implements OnInit {
+  message = '';
 
-  constructor(private cartservice: CartService) { }
+  constructor(private cartservice: CartService, private transactionservice: TransactionService) { }
+
+  confirmTransaction() {
+    const transaction = this.transactionservice.confirmTransaction();
+    if (transaction == null) {
+      this.message = 'Transaksi belum disimpan. Keranjang kosong atau stok tidak cukup.';
+    } else {
+      this.message = 'Transaksi ' + transaction.id + ' berhasil disimpan. Total Rp ' + transaction.total + '.';
+    }
+  }
 
   getItems() {
     return this.cartservice.items;

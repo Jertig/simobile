@@ -1,14 +1,52 @@
 import { Injectable } from '@angular/core';
 import { ProductService } from './product.service';
+import { CartService } from './cart.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TransactionService {
-  // Format data: date dan items berisi productId, quantity, price.
+  // Format data: id, date, total dan items berisi productId, name, quantity, price.
   transactions: any[] = [];
+  nextId = 1;
 
-  constructor(private productservice: ProductService) { }
+  constructor(private productservice: ProductService, private cartservice: CartService) { }
+
+  confirmTransaction() {
+    const cartItems = this.cartservice.items;
+    if (cartItems.length == 0) return null;
+
+    for (let i = 0; i < cartItems.length; i++) {
+      const item = cartItems[i];
+      const product = this.productservice.getProductById(item.productId);
+      if (product == null || item.quantity <= 0 || item.quantity > product.stock) return null;
+    }
+
+    const soldItems: any[] = [];
+    for (let i = 0; i < cartItems.length; i++) {
+      const item = cartItems[i];
+      soldItems.push({
+        productId: item.productId,
+        name: item.name,
+        quantity: item.quantity,
+        price: item.price
+      });
+    }
+
+    const transaction = {
+      id: this.nextId,
+      date: new Date(),
+      total: this.cartservice.getTotal(),
+      items: soldItems
+    };
+    this.transactions.push(transaction);
+    this.nextId++;
+    for (let i = 0; i < soldItems.length; i++) {
+      this.productservice.reduceStock(soldItems[i].productId, soldItems[i].quantity);
+    }
+    this.cartservice.clearCart();
+    return transaction;
+  }
 
   getTodaySummary() {
     const today = new Date();

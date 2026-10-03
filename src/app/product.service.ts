@@ -4,6 +4,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ProductService {
+  reduceStock(id: number, quantity: number) {
+    const product = this.getProductById(id);
+    if (product != null && quantity > 0 && quantity <= product.stock) {
+      product.stock -= quantity;
+    }
+  }
   products = [
     {
       id: 1, name: 'Beras 5 kg', category: 'Sembako',
