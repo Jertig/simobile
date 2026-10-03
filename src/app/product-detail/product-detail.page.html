@@ -12,6 +12,7 @@
   <div *ngIf="product != null">
     <ion-img id="product-image" [src]="getImageUrl()" alt="Gambar produk"></ion-img>
     <h2>{{ product.name }}</h2>
+    <ion-button fill="outline" routerLink="/product-form/{{ product.id }}">Edit produk</ion-button>
     <ion-list>
       <ion-item>
         <ion-label>Kategori: {{ product.category }}</ion-label>

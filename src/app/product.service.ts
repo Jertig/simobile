@@ -4,6 +4,29 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ProductService {
+  addProduct(data: any): number {
+    let id = 1;
+    for (let i = 0; i < this.products.length; i++) {
+      if (this.products[i].id >= id) id = this.products[i].id + 1;
+    }
+    this.products.push({ id: id, name: data.name, category: data.category,
+      purchasePrice: data.purchasePrice, sellingPrice: data.sellingPrice,
+      stock: data.stock, imageUrl: data.imageUrl });
+    return id;
+  }
+
+  updateProduct(id: number, data: any): boolean {
+    const product = this.getProductById(id);
+    if (product == null) return false;
+    product.name = data.name;
+    product.category = data.category;
+    product.purchasePrice = data.purchasePrice;
+    product.sellingPrice = data.sellingPrice;
+    product.stock = data.stock;
+    product.imageUrl = data.imageUrl;
+    return true;
+  }
+
   reduceStock(id: number, quantity: number) {
     const product = this.getProductById(id);
     if (product != null && quantity > 0 && quantity <= product.stock) {

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/products"></ion-back-button>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ productId == 0 ? 'Tambah Produk' : 'Edit Produk' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <p *ngIf="missingProduct">Produk tidak ditemukan.</p>
+  <form *ngIf="!missingProduct" [formGroup]="form" (ngSubmit)="saveProduct()">
+    <ion-item><ion-input label="Nama produk" labelPlacement="floating" formControlName="name"></ion-input></ion-item>
+    <p class="field-error" *ngIf="showError('name')">Nama produk wajib diisi.</p>
+    <ion-item><ion-input label="Kategori" labelPlacement="floating" formControlName="category"></ion-input></ion-item>
+    <ion-item><ion-input label="Harga beli" labelPlacement="floating" inputmode="decimal" formControlName="purchasePrice"></ion-input></ion-item>
+    <p class="field-error" *ngIf="showError('purchasePrice')">Harga beli harus angka lebih dari 0.</p>
+    <ion-item><ion-input label="Harga jual" labelPlacement="floating" inputmode="decimal" formControlName="sellingPrice"></ion-input></ion-item>
+    <p class="field-error" *ngIf="showError('sellingPrice')">Harga jual harus angka lebih dari 0.</p>
+    <ion-item><ion-input label="Stok" labelPlacement="floating" inputmode="decimal" formControlName="stock"></ion-input></ion-item>
+    <p class="field-error" *ngIf="showError('stock')">Stok harus angka 0 atau lebih.</p>
+    <ion-item><ion-input label="URL gambar (opsional)" labelPlacement="floating" formControlName="imageUrl"></ion-input></ion-item>
+    <ion-button type="submit" expand="block">Simpan produk</ion-button>
+  </form>
+  <p *ngIf="message != ''">{{ message }}</p>
+  <ion-button *ngIf="savedId != 0" fill="outline" routerLink="/product-detail/{{ savedId }}">Lihat produk</ion-button>
+  <ion-button fill="outline" routerLink="/tabs/products">Daftar produk</ion-button>
+</ion-content>

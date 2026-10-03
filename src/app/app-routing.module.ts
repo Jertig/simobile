@@ -30,6 +30,14 @@ const routes: Routes = [
     path: 'transaction-detail/:id',
     loadChildren: () => import('./transaction-detail/transaction-detail.module').then(m => m.TransactionDetailPageModule)
   },
+  {
+    path: 'product-form',
+    loadChildren: () => import('./product-form/product-form.module').then( m => m.ProductFormPageModule)
+  },
+  {
+    path: 'product-form/:id',
+    loadChildren: () => import('./product-form/product-form.module').then(m => m.ProductFormPageModule)
+  },
   { path: '', redirectTo: 'tabs/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: 'tabs/dashboard' }
 ];
