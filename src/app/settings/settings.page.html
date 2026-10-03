@@ -12,6 +12,9 @@
   <h2>Pengaturan</h2>
   <ion-list>
     <ion-item>
+      <ion-toggle [(ngModel)]="darkMode" (ionChange)="changeTheme()">Mode gelap</ion-toggle>
+    </ion-item>
+    <ion-item>
       <ion-label>
         <h2>Tampilan SIMOBILE</h2>
         <p>Warna hijau dan kuning Toko Makmur Jaya.</p>
